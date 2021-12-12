@@ -31,7 +31,7 @@ int main(){
 	 	std::cout<<payload->hum<<std::endl;
 	};
 	while(1){
-		serial->serialRead(callback);
+		serial->serialRead(12 ,callback);
 	}
 	return 0; 
 

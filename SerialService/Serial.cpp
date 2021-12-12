@@ -63,12 +63,12 @@ bool Serial::begin(){
         cfsetospeed(&_tty, b);
 }
 
-void Serial::serialRead(const std::function<void(char *)>& callback){
-	char _buff[12];
-	int n = read(_serialPort, &_buff, 12);
+void Serial::serialRead(const int packet_size, const std::function<void(char *)>& callback){
+	char _buff[packet_size];
+	int n = read(_serialPort, &_buff, packet_size);
 	std::cout<<_buff<<std::endl;
 	if(n > 0){
-		for(int i = 0; i < 12; i++){
+		for(int i = 0; i < packet_size; i++){
 				std::cout<<"["<<i<<"] = "<<_buff[i]<<std::endl;
 		}
 		(callback)(_buff);

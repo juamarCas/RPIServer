@@ -54,5 +54,5 @@ public:
 	 *@brief reads data from buffer calls a callback to a function that is user defined, the callback receives a string
 	 * 
 	 */
-	void serialRead(const std::function<void(char *)>& func);
+	void serialRead(const int packet_size, const std::function<void(char *)>& func);
 }; 
