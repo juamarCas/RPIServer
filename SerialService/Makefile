@@ -1,2 +1,13 @@
-all:
-	g++ main.cpp -o app
+C_INCLUDE = -I./Includes
+FLAGS = -Wall
+
+all: main.o Serial.o
+	g++ $(FLAGS) -o app main.o Serial.o
+
+main.o: Serial.o
+	g++ -c main.cpp $(C_INCLUDE)
+
+Serial.o: 
+	g++ -c Serial.cpp $(C_INCLUDE)
+clean: 
+	rm -f ./app *.o
