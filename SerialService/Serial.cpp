@@ -76,3 +76,7 @@ void Serial::serialRead(const int packet_size, const std::function<void(char *)>
 		tcflush(_serialPort, TCIOFLUSH);
 	}
 }
+
+void Serial::ClosePort(){
+	close(_serialPort);
+}

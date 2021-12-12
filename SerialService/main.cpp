@@ -16,13 +16,12 @@ typedef struct Payloads{
 	float         hum;
 }Payload, *PPayload;
 #pragma pack()
- 
-int serial_port;
+
+Serial * serial = new Serial("/dev/serial0", false, false, false, Serial::B8, Serial::BA9600);
 
 int main(){
 	
 	signal(SIGINT, signalHandler);
-	Serial * serial = new Serial("/dev/serial0", false, false, false, Serial::B8, Serial::BA9600);
 	serial->begin();
 	PPayload payload;
 	
@@ -31,15 +30,14 @@ int main(){
 	 	std::cout<<payload->hum<<std::endl;
 	};
 	while(1){
-		serial->serialRead(12 ,callback);
+		serial->serialRead(PACKET_SIZE ,callback);
 	}
 	return 0; 
 
 }
 
 void signalHandler(int signum){
-	std::cout<<"BYEEE!"<<std::endl;
-	close(serial_port);
+	serial->ClosePort();
 	exit(signum);
 }
 

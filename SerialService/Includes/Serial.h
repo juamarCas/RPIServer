@@ -55,4 +55,5 @@ public:
 	 * 
 	 */
 	void serialRead(const int packet_size, const std::function<void(char *)>& func);
+	void ClosePort(); 
 }; 
